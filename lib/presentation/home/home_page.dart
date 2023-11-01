@@ -1,13 +1,18 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/cart_page.dart';
+import 'package:fic9_ecommerce_template_app/presentation/home/bloc/bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/components/search_input.dart';
 import '../../common/components/space_height.dart';
 import '../../common/constants/colors.dart';
+import '../cart/bloc/bloc/cart_bloc.dart';
 import 'product_model.dart';
 import 'widgets/category_button.dart';
 import 'widgets/image_slider.dart';
 import 'widgets/product_card.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -102,18 +107,42 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               Row(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SizedBox()),
+                  badges.Badge(
+                    badgeContent: BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () {
+                            return const Text(
+                              '0',
+                              style: TextStyle(color: Colors.white),
+                            );
+                          },
+                          loaded: (carts) {
+                            int totalQuantity = 0;
+                            for (var cart in carts) {
+                              totalQuantity += cart.quantity;
+                            }
+                            return Text(
+                              totalQuantity.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            );
+                          },
                         );
                       },
-                      icon: Image.asset(
-                        Images.iconBuy,
-                        height: 24.0,
-                      )),
+                    ),
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CartPage()),
+                          );
+                        },
+                        icon: Image.asset(
+                          Images.iconBuy,
+                          height: 24.0,
+                        )),
+                  ),
                   IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -138,48 +167,48 @@ class _HomePageState extends State<HomePage> {
           const SpaceHeight(16.0),
           ImageSlider(items: images),
           const SpaceHeight(12.0),
-          const Text(
-            "Kategori",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: ColorName.primary,
-            ),
-          ),
-          const SpaceHeight(12.0),
-          Row(
-            children: [
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion1,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion2,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion3,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.more,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
-          const SpaceHeight(16.0),
+          // const Text(
+          //   "Kategori",
+          //   style: TextStyle(
+          //     fontSize: 14,
+          //     fontWeight: FontWeight.w700,
+          //     color: ColorName.primary,
+          //   ),
+          // ),
+          // const SpaceHeight(12.0),
+          // Row(
+          //   children: [
+          //     Flexible(
+          //       child: CategoryButton(
+          //         imagePath: Images.fashion1,
+          //         label: 'Pakaian',
+          //         onPressed: () {},
+          //       ),
+          //     ),
+          //     Flexible(
+          //       child: CategoryButton(
+          //         imagePath: Images.fashion2,
+          //         label: 'Pakaian',
+          //         onPressed: () {},
+          //       ),
+          //     ),
+          //     Flexible(
+          //       child: CategoryButton(
+          //         imagePath: Images.fashion3,
+          //         label: 'Pakaian',
+          //         onPressed: () {},
+          //       ),
+          //     ),
+          //     Flexible(
+          //       child: CategoryButton(
+          //         imagePath: Images.more,
+          //         label: 'Pakaian',
+          //         onPressed: () {},
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // const SpaceHeight(16.0),
           const Text(
             "Produk",
             style: TextStyle(
@@ -189,18 +218,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SpaceHeight(8.0),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 55.0,
-            ),
-            itemCount: products.length,
-            itemBuilder: (context, index) => ProductCard(
-              data: products[index],
-            ),
+          BlocBuilder<ProductsBloc, ProductsState>(
+            builder: (context, state) {
+              return state.maybeWhen(orElse: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }, loaded: (model) {
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 55.0,
+                  ),
+                  itemCount: model.data.length,
+                  itemBuilder: (context, index) => ProductCard(
+                    data: model.data[index],
+                  ),
+                );
+              });
+            },
           ),
         ],
       ),

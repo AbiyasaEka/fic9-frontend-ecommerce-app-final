@@ -1,4 +1,5 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
+import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasource.dart';
 import 'package:fic9_ecommerce_template_app/data/models/requests/login_request_model.dart';
 import 'package:fic9_ecommerce_template_app/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/dashboard_page.dart';
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
           const SpaceHeight(24.0),
           const Center(
             child: Text(
-              "Abiyasa Eka Saputra",
+              "Garuda One",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
@@ -81,8 +82,9 @@ class _LoginPageState extends State<LoginPage> {
             listener: (context, state) {
               state.maybeWhen(
                   orElse: () {},
-                  success: (data) {
-                    Navigator.push(
+                  success: (data) async {
+                    AuthLocalDataSource().saveAuthData(data);
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const DashboardPage()));
