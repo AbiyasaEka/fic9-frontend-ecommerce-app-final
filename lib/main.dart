@@ -2,12 +2,20 @@ import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasour
 import 'package:fic9_ecommerce_template_app/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/auth/login_page.dart';
-import 'package:fic9_ecommerce_template_app/presentation/auth/splash_page.dart';
-import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/bloc/cart_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/cart/cart_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/get_cost/get_cost_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/bloc/bloc/products_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/dashboard_page.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/add_address/add_address_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/city/city_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/get_address/get_address_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/province/province_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/subdistrict/subdistrict_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'presentation/cart/bloc/order/order_bloc.dart';
+import 'presentation/payment/bloc/order_detail/order_detail_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +39,30 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OrderBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OrderDetailBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProvinceBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CityBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SubdistrictBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AddAddressBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GetAddressBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GetCostBloc(),
         ),
       ],
       child: MaterialApp(

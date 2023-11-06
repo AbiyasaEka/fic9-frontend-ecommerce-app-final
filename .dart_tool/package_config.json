@@ -26,6 +26,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "awesome_dialog",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/awesome_dialog-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "badges",
       "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/badges-3.1.2",
       "packageUri": "lib/",
@@ -416,6 +422,18 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "rive",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/rive-0.11.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "rive_common",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/rive_common-0.2.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.2.2",
       "packageUri": "lib/",
@@ -560,6 +578,30 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "webview_flutter",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter-4.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "webview_flutter_android",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-3.12.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_wkwebview-3.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "win32",
       "rootUri": "file:///C:/Users/abiya/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.0.9",
       "packageUri": "lib/",
@@ -584,7 +626,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-01T15:58:20.765524Z",
+  "generated": "2023-11-05T13:48:39.367545Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

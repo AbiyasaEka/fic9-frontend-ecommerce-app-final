@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fic9_ecommerce_template_app/common/constants/variables.dart';
 import 'package:fic9_ecommerce_template_app/common/extensions/int_ext.dart';
-import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/bloc/cart_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/cart/cart_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/cart/widgets/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../common/components/space_height.dart';
 import '../../../common/constants/colors.dart';
 import '../../../common/constants/images.dart' as localImages;
-import '../../../data/models/responses/products_response_model.dart';
 
 class CartItemWidget extends StatefulWidget {
   const CartItemWidget({

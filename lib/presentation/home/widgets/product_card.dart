@@ -1,7 +1,7 @@
 import 'package:fic9_ecommerce_template_app/common/constants/variables.dart';
 import 'package:fic9_ecommerce_template_app/common/extensions/int_ext.dart';
 import 'package:fic9_ecommerce_template_app/data/models/responses/products_response_model.dart';
-import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/bloc/cart_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/cart/cart_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/cart/widgets/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,72 +29,93 @@ class ProductCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              color: ColorName.black.withOpacity(0.05),
-              blurRadius: 7.0,
-              spreadRadius: 0,
-              offset: const Offset(0, 4),
-            ),
+              color: Colors.black,
+              offset: const Offset(
+                1.0,
+                1.0,
+              ), //Offset
+              blurRadius: 2.0,
+              spreadRadius: 0.0,
+            ), //BoxShadow
+            BoxShadow(
+              color: Colors.white,
+              offset: const Offset(0.0, 0.0),
+              blurRadius: 0.0,
+              spreadRadius: 2.0,
+            ), //BoxShadow
           ],
         ),
-        child: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Image.network(
-                  '${Variables.baseUrl}${data.attributes.images.data.first.attributes.url}',
-                  width: 170.0,
-                  height: 112.0,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SpaceHeight(14.0),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              data.attributes.name,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Image.network(
+                          '${Variables.baseUrl}${data.attributes.images.data.first.attributes.url}',
+                          width: 170.0,
+                          height: 112.0,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const SpaceHeight(14.0),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      data.attributes.name,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                  const SpaceHeight(4.0),
+                                  Text(
+                                    int.parse(data.attributes.price)
+                                        .currencyFormatRp,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          const SpaceHeight(4.0),
-                          Text(
-                            int.parse(data.attributes.price).currencyFormatRp,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  width: 30,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        context.read<CartBloc>().add(
+                                            CartEvent.add(CartModel(
+                                                product: data, quantity: 1)));
+                                      },
+                                      icon: Icon(Icons.add))),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(
-                          width: 30,
-                          child: IconButton(
-                              onPressed: () {
-                                context.read<CartBloc>().add(CartEvent.add(
-                                    CartModel(product: data, quantity: 1)));
-                              },
-                              icon: Icon(Icons.add))),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ]),
         ),
       ),
     );

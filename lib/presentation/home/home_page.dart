@@ -7,9 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/components/search_input.dart';
 import '../../common/components/space_height.dart';
 import '../../common/constants/colors.dart';
-import '../cart/bloc/bloc/cart_bloc.dart';
-import 'product_model.dart';
-import 'widgets/category_button.dart';
+import '../cart/bloc/cart/cart_bloc.dart';
 import 'widgets/image_slider.dart';
 import 'widgets/product_card.dart';
 import 'package:badges/badges.dart' as badges;
@@ -23,28 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late TextEditingController searchController;
-  final List<ProductModel> products = [
-    ProductModel(
-      images: [Images.product1],
-      name: 'Tas Kekinian',
-      price: 200000,
-    ),
-    ProductModel(
-      images: [Images.product2],
-      name: 'Earphone',
-      price: 199999,
-    ),
-    ProductModel(
-      images: [Images.product3],
-      name: 'Sepatu Pria',
-      price: 700000,
-    ),
-    ProductModel(
-      images: [Images.product4],
-      name: 'Earphone',
-      price: 670000,
-    ),
-  ];
 
   @override
   void initState() {
