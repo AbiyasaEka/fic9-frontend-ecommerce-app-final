@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
-import '../../home/dashboard_page.dart';
+import '../../dashboard/dashboard_page.dart';
 
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});

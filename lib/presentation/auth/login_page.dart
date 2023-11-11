@@ -2,7 +2,6 @@ import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
 import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasource.dart';
 import 'package:fic9_ecommerce_template_app/data/models/requests/login_request_model.dart';
 import 'package:fic9_ecommerce_template_app/presentation/auth/bloc/login/login_bloc.dart';
-import 'package:fic9_ecommerce_template_app/presentation/home/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +9,7 @@ import '../../common/components/button.dart';
 import '../../common/components/custom_text_field.dart';
 import '../../common/components/space_height.dart';
 import '../../common/constants/colors.dart';
+import '../dashboard/dashboard_page.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {

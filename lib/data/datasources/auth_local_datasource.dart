@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:fic9_ecommerce_template_app/data/models/responses/auth_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

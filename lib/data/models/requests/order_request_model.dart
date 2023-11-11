@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class OrderRequestModel {
@@ -29,6 +30,7 @@ class Data {
   final String courierName;
   final int courierPrice;
   final String status;
+  final int buyerId;
 
   Data({
     required this.items,
@@ -37,6 +39,7 @@ class Data {
     required this.courierName,
     required this.courierPrice,
     required this.status,
+    required this.buyerId,
   });
 
   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
@@ -44,13 +47,13 @@ class Data {
   String toJson() => json.encode(toMap());
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
-        items: List<Item>.from(json["items"].map((x) => Item.fromMap(x))),
-        totalPrice: json["totalPrice"],
-        deliveryAddress: json["deliveryAddress"],
-        courierName: json["courierName"],
-        courierPrice: json["courierPrice"],
-        status: json["status"],
-      );
+      items: List<Item>.from(json["items"].map((x) => Item.fromMap(x))),
+      totalPrice: json["totalPrice"],
+      deliveryAddress: json["deliveryAddress"],
+      courierName: json["courierName"],
+      courierPrice: json["courierPrice"],
+      status: json["status"],
+      buyerId: json['buyerId']);
 
   Map<String, dynamic> toMap() => {
         "items": List<dynamic>.from(items.map((x) => x.toMap())),
@@ -59,6 +62,7 @@ class Data {
         "courierName": courierName,
         "courierPrice": courierPrice,
         "status": status,
+        "buyerId": buyerId
       };
 }
 

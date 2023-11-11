@@ -23,6 +23,7 @@ class AddressTile extends StatelessWidget {
   });
 
   @override
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,

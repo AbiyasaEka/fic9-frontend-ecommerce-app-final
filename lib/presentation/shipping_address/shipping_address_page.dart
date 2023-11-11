@@ -5,6 +5,7 @@ import '../../common/components/button.dart';
 import '../../common/components/space_height.dart';
 import 'add_address_page.dart';
 import 'bloc/get_address/get_address_bloc.dart';
+import 'edit_address_page.dart';
 import 'models/address_model.dart';
 import 'widgets/address_tile.dart';
 
@@ -76,14 +77,14 @@ class _ShippingAdressPageState extends State<ShippingAddressPage> {
                     setState(() {});
                   },
                   onEditTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => EditAddressPage(
-                    //       data: addresses[index],
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditAddressPage(
+                          data: data.data[index],
+                        ),
+                      ),
+                    );
                   },
                   onDeleteTap: () {},
                 ),

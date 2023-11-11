@@ -6,6 +6,8 @@ import '../models/responses/city_response_model.dart';
 import '../models/responses/cost_response_model.dart';
 import '../models/responses/province_response_model.dart';
 import '../models/responses/subdistrict_response_model.dart';
+import '../models/responses/waybill_failed_response_model.dart';
+import '../models/responses/waybill_success_response_model.dart';
 
 class RajaOngkirRemoteDatasource {
   Future<Either<String, ProvinceResponseModel>> getProvinces() async {
@@ -81,6 +83,30 @@ class RajaOngkirRemoteDatasource {
       return right(CostResponseModel.fromJson(response.body));
     } else {
       return left('Error');
+    }
+  }
+
+  Future<Either<WaybillFailedResponseModel, WaybillSuccessResponseModel>>
+      getWayBill(
+    String waybill,
+    String courier,
+  ) async {
+    final url = Uri.parse('https://pro.rajaongkir.com/api/waybill');
+    final response = await http.post(
+      url,
+      headers: {
+        'key': Variables.rajaOngkirKey,
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      body: {
+        'waybill': waybill,
+        'courier': courier,
+      },
+    );
+    if (response.statusCode == 200) {
+      return right(WaybillSuccessResponseModel.fromJson(response.body));
+    } else {
+      return left(WaybillFailedResponseModel.fromJson(response.body));
     }
   }
 }

@@ -1,4 +1,4 @@
-#Mon Nov 06 10:22:57 WIB 2023
-base.0=D\:\\Belajar\\Flutter\\flutter_fic9_ecommerce_template-master\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Sat Nov 11 09:16:48 WIB 2023
+base.0=D\:\\Belajar\\Flutter\\FIC9 Tugas Akhir\\fic9_eccommerce\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

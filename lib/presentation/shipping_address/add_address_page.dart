@@ -32,32 +32,48 @@ class _AddAddressPageState extends State<AddAddressPage> {
   bool isDefault = false;
 
   Province selectedProvince = Province(
-    provinceId: '1',
-    province: 'Bali',
+    provinceId: '0',
+    province: '-',
   );
 
   City selectedCity = City(
-    cityId: '1',
-    provinceId: '1',
-    province: 'Bali',
-    type: 'Kabupaten',
-    cityName: 'Badung',
-    postalCode: '80351',
+    cityId: '0',
+    provinceId: '0',
+    province: '0',
+    type: '',
+    cityName: '',
+    postalCode: '',
   );
 
   SubDistrict selectedSubDistrict = SubDistrict(
-    subdistrictId: '1',
-    provinceId: '1',
-    province: 'Bali',
-    cityId: '1',
-    city: 'Badung',
-    type: 'Kabupaten',
-    subdistrictName: 'Kuta',
+    subdistrictId: '0',
+    provinceId: '0',
+    province: '',
+    cityId: '0',
+    city: '',
+    type: '',
+    subdistrictName: '',
   );
+
+  void getAllProvince() {
+    context.read<ProvinceBloc>().add(const ProvinceEvent.getAll());
+  }
+
+  void getAllByProvinceId(String id) {
+    context.read<CityBloc>().add(
+          CityEvent.getAllByProvinceId(id),
+        );
+  }
+
+  void getAllByCityId(String id) {
+    context.read<SubdistrictBloc>().add(
+          SubdistrictEvent.getAllByCityId(id),
+        );
+  }
 
   @override
   void initState() {
-    context.read<ProvinceBloc>().add(const ProvinceEvent.getAll());
+    getAllProvince();
     super.initState();
   }
 
@@ -109,20 +125,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   );
                 },
                 loaded: (provinces) {
-                  selectedProvince = provinces.first;
                   return CustomDropdown<Province>(
-                    value: selectedProvince,
+                    value: provinces.first,
                     items: provinces,
                     label: 'Provinsi',
                     onChanged: (value) {
                       setState(() {
                         selectedProvince = value!;
-                        context.read<CityBloc>().add(
-                              CityEvent.getAllByProvinceId(
-                                selectedProvince.provinceId,
-                              ),
-                            );
                       });
+                      getAllByProvinceId(value!.provinceId);
                     },
                   );
                 },
@@ -147,20 +158,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   );
                 },
                 loaded: (cities) {
-                  selectedCity = cities.first;
                   return CustomDropdown<City>(
-                    value: selectedCity,
+                    value: cities.first,
                     items: cities,
                     label: 'Kota/Kabupaten',
                     onChanged: (value) {
                       setState(() {
                         selectedCity = value!;
-                        context.read<SubdistrictBloc>().add(
-                              SubdistrictEvent.getAllByCityId(
-                                selectedCity.cityId,
-                              ),
-                            );
                       });
+                      getAllByCityId(value!.cityId);
                     },
                   );
                 },
@@ -185,9 +191,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   );
                 },
                 loaded: (subdistricts) {
-                  selectedSubDistrict = subdistricts.first;
                   return CustomDropdown<SubDistrict>(
-                    value: selectedSubDistrict,
+                    value: subdistricts.first,
                     items: subdistricts,
                     label: 'Kecamatan',
                     onChanged: (value) {
@@ -234,6 +239,31 @@ class _AddAddressPageState extends State<AddAddressPage> {
               orElse: () {
                 return Button.filled(
                   onPressed: () async {
+                    //Validasi
+                    if (nameController.text == '') {
+                      _warning('Nama lengkap tidak boleh kosong!');
+                      return;
+                    }
+                    if (addressController.text == '') {
+                      _warning('Alamat tidak boleh kosong!');
+                      return;
+                    }
+                    if (phoneNumberController.text == '') {
+                      _warning('No handphone tidak boleh kosong!');
+                      return;
+                    }
+                    if (selectedProvince.provinceId == '0') {
+                      _warning('Provinsi belum dipilih!');
+                      return;
+                    }
+                    if (selectedCity.cityId == '0') {
+                      _warning('Kota belum dipilih!');
+                      return;
+                    }
+                    if (selectedSubDistrict.subdistrictId == '0') {
+                      _warning('Kecamatan belum dipilih!');
+                      return;
+                    }
                     //get userID from local storage
                     final userId = (await AuthLocalDataSource().getUser()).id;
                     context.read<AddAddressBloc>().add(
@@ -272,6 +302,33 @@ class _AddAddressPageState extends State<AddAddressPage> {
           },
         ),
       ),
+    );
+  }
+
+  Future<void> _warning(String pesan) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Peringatan'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(pesan),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Tutup'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

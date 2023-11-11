@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../../common/constants/variables.dart';
 import '../models/requests/add_address_request_model.dart';
 import '../models/responses/add_address_response_model.dart';
+import '../models/responses/buyer_order_response_model.dart';
 import '../models/responses/get_address_response_model.dart';
 import '../models/responses/order_detail_response_model.dart';
 import '../models/responses/order_response_model.dart';
@@ -43,6 +44,25 @@ class OrderRemoteDatasource {
 
     if (response.statusCode == 200) {
       return right(OrderDetailResponseModel.fromJson(response.body));
+    } else {
+      return left('Server Error');
+    }
+  }
+
+  Future<Either<String, BuyerOrderResponseModel>> getOrderByBuyerId() async {
+    final token = await AuthLocalDataSource().getToken();
+    final user = await AuthLocalDataSource().getUser();
+    final response = await http.get(
+      Uri.parse(
+          '${Variables.baseUrl}/api/orders?filters[buyerId][\$eq]=${user.id}}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return right(BuyerOrderResponseModel.fromJson(response.body));
     } else {
       return left('Server Error');
     }

@@ -1,0 +1,18 @@
+@echo off
+"C:\\Users\\abiya\\AppData\\Local\\Android\\sdk\\cmake\\3.18.1\\bin\\cmake.exe" ^
+  "-HC:\\Users\\abiya\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\rive_common-0.2.7\\android" ^
+  "-DCMAKE_SYSTEM_NAME=Android" ^
+  "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+  "-DCMAKE_SYSTEM_VERSION=19" ^
+  "-DANDROID_PLATFORM=android-19" ^
+  "-DANDROID_ABI=arm64-v8a" ^
+  "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+  "-DANDROID_NDK=C:\\Users\\abiya\\AppData\\Local\\Android\\sdk\\ndk\\25.1.8937393" ^
+  "-DCMAKE_ANDROID_NDK=C:\\Users\\abiya\\AppData\\Local\\Android\\sdk\\ndk\\25.1.8937393" ^
+  "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\abiya\\AppData\\Local\\Android\\sdk\\ndk\\25.1.8937393\\build\\cmake\\android.toolchain.cmake" ^
+  "-DCMAKE_MAKE_PROGRAM=C:\\Users\\abiya\\AppData\\Local\\Android\\sdk\\cmake\\3.18.1\\bin\\ninja.exe" ^
+  "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\Belajar\\Flutter\\FIC9 Tugas Akhir\\fic9_eccommerce\\build\\rive_common\\intermediates\\cxx\\Debug\\5d1p173m\\obj\\arm64-v8a" ^
+  "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=D:\\Belajar\\Flutter\\FIC9 Tugas Akhir\\fic9_eccommerce\\build\\rive_common\\intermediates\\cxx\\Debug\\5d1p173m\\obj\\arm64-v8a" ^
+  "-DCMAKE_BUILD_TYPE=Debug" ^
+  "-BC:\\Users\\abiya\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\rive_common-0.2.7\\android\\.cxx\\Debug\\5d1p173m\\arm64-v8a" ^
+  -GNinja

@@ -8,13 +8,21 @@ part 'province_state.dart';
 part 'province_bloc.freezed.dart';
 
 class ProvinceBloc extends Bloc<ProvinceEvent, ProvinceState> {
+  Province defaultValue = Province(
+    provinceId: '0',
+    province: '-',
+  );
+
   ProvinceBloc() : super(const _Initial()) {
     on<ProvinceEvent>((event, emit) async {
       emit(const _Loading());
       final result = await RajaOngkirRemoteDatasource().getProvinces();
       result.fold(
         (l) => emit(_Error(l)),
-        (r) => emit(_Loaded(r.rajaongkir.results)),
+        (r) {
+          r.rajaongkir.results.insert(0, defaultValue);
+          emit(_Loaded(r.rajaongkir.results));
+        },
       );
     });
   }
