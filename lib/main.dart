@@ -9,6 +9,7 @@ import 'package:fic9_ecommerce_template_app/presentation/order/bloc/buyer_order/
 import 'package:fic9_ecommerce_template_app/presentation/order/bloc/cek_resi/cek_resi_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/add_address/add_address_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/city/city_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/delete_address/delete_address_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/get_address/get_address_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/province/province_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/subdistrict/subdistrict_bloc.dart';
@@ -71,6 +72,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CekResiBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DeleteAddressBloc(),
         ),
       ],
       child: MaterialApp(

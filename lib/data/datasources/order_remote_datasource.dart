@@ -88,6 +88,43 @@ class OrderRemoteDatasource {
     }
   }
 
+  //delete address
+  Future<Either<String, String>> deleteAddress(String id) async {
+    final token = await AuthLocalDataSource().getToken();
+    final response = await http.delete(
+      Uri.parse('${Variables.baseUrl}/api/addresses/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return right('Address Deleted');
+    } else {
+      return left('Server Error');
+    }
+  }
+
+  Future<Either<String, AddAddressResponseModel>> editAddress(
+      AddAddressRequestModel request, String id) async {
+    final token = await AuthLocalDataSource().getToken();
+    final response = await http.put(
+      Uri.parse('${Variables.baseUrl}/api/addresses/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+      body: request.toJson(),
+    );
+
+    if (response.statusCode == 200) {
+      return right(AddAddressResponseModel.fromJson(response.body));
+    } else {
+      return left('Server Error');
+    }
+  }
+
   //get address by user id
   Future<Either<String, GetAddressResponseModel>> getAddressByUserId() async {
     final token = await AuthLocalDataSource().getToken();
@@ -95,6 +132,26 @@ class OrderRemoteDatasource {
     final response = await http.get(
       Uri.parse(
           '${Variables.baseUrl}/api/addresses?filters[user_id][\$eq]=${user.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return right(GetAddressResponseModel.fromJson(response.body));
+    } else {
+      return left('Server Error');
+    }
+  }
+
+  Future<Either<String, GetAddressResponseModel>>
+      getAddressByUserIdDefault() async {
+    final token = await AuthLocalDataSource().getToken();
+    final user = await AuthLocalDataSource().getUser();
+    final response = await http.get(
+      Uri.parse(
+          '${Variables.baseUrl}/api/addresses?filters[user_id][\$eq]=${user.id}&filters[is_default]=true'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token',

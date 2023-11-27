@@ -38,41 +38,66 @@ class _EditAddressPageState extends State<EditAddressPage> {
   bool isDefault = false;
 
   Province selectedProvince = Province(
-    provinceId: '0',
-    province: '',
+    provinceId: '-1',
+    province: '-',
   );
 
   City selectedCity = City(
-    cityId: '0',
-    provinceId: '1',
-    province: 'Bali',
-    type: 'Kabupaten',
-    cityName: 'Badung',
-    postalCode: '80351',
+    cityId: '-1',
+    provinceId: '0',
+    province: '0',
+    type: '',
+    cityName: '',
+    postalCode: '',
   );
 
   SubDistrict selectedSubDistrict = SubDistrict(
-    subdistrictId: '0',
-    provinceId: '1',
-    province: 'Bali',
-    cityId: '1',
-    city: 'Badung',
-    type: 'Kabupaten',
-    subdistrictName: 'Kuta',
+    subdistrictId: '-1',
+    provinceId: '0',
+    province: '',
+    cityId: '0',
+    city: '',
+    type: '',
+    subdistrictName: '',
   );
+
+  void getAllProvince() {
+    context.read<ProvinceBloc>().add(const ProvinceEvent.getAll());
+  }
+
+  void getAllByProvinceId(String id) {
+    context.read<CityBloc>().add(
+          CityEvent.getAllByProvinceId(id),
+        );
+  }
+
+  void getAllByCityId(String id) {
+    context.read<SubdistrictBloc>().add(
+          SubdistrictEvent.getAllByCityId(id),
+        );
+  }
+
+  int getProvIndex(List data) {
+    return data.indexWhere(
+        (element) => element.provinceId == widget.data.attributes.provId);
+  }
+
+  int getCityIndex(List data) {
+    return data.indexWhere(
+        (element) => element.cityId == widget.data.attributes.cityId);
+  }
 
   @override
   void initState() {
     nameController.text = widget.data.attributes.name;
     addressController.text = widget.data.attributes.address;
     phoneNumberController.text = widget.data.attributes.phone;
-    context.read<ProvinceBloc>().add(const ProvinceEvent.getAll());
-    context.read<CityBloc>().add(
-          CityEvent.getAllByProvinceId(widget.data.attributes.provId),
-        );
-    context.read<SubdistrictBloc>().add(
-          SubdistrictEvent.getAllByCityId(widget.data.attributes.cityId),
-        );
+    zipCodeController.text = widget.data.attributes.codePos;
+
+    getAllProvince();
+    getAllByProvinceId(widget.data.attributes.provId);
+    getAllByCityId(widget.data.attributes.cityId);
+
     super.initState();
   }
 
@@ -90,7 +115,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Alamat'),
+        title: const Text('Ubah Alamat'),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
@@ -124,30 +149,18 @@ class _EditAddressPageState extends State<EditAddressPage> {
                   );
                 },
                 loaded: (provinces) {
-                  if (selectedProvince.provinceId == '0') {
-                    selectedProvince = provinces[provinces.indexWhere(
-                        ((province) =>
-                            province.provinceId ==
-                            widget.data.attributes.provId))];
-                    context.read<CityBloc>().add(
-                          CityEvent.getAllByProvinceId(
-                            selectedProvince.provinceId,
-                          ),
-                        );
+                  if (selectedProvince.provinceId == '-1') {
+                    selectedProvince = provinces[getProvIndex(provinces)];
                   }
                   return CustomDropdown<Province>(
-                    value: selectedProvince,
+                    value: provinces[getProvIndex(provinces)],
                     items: provinces,
                     label: 'Provinsi',
                     onChanged: (value) {
                       setState(() {
                         selectedProvince = value!;
-                        context.read<CityBloc>().add(
-                              CityEvent.getAllByProvinceId(
-                                selectedProvince.provinceId,
-                              ),
-                            );
                       });
+                      getAllByProvinceId(value!.provinceId);
                     },
                   );
                 },
@@ -160,8 +173,8 @@ class _EditAddressPageState extends State<EditAddressPage> {
               return state.maybeWhen(
                 orElse: () {
                   return CustomDropdown(
-                    value: '-',
-                    items: const ['-'],
+                    value: '-- Pilih Kota --',
+                    items: const ['-- Pilih Kota --'],
                     label: 'Kota/Kabupaten',
                     onChanged: (value) {},
                   );
@@ -172,23 +185,15 @@ class _EditAddressPageState extends State<EditAddressPage> {
                   );
                 },
                 loaded: (cities) {
-                  if (selectedCity.cityId == '0') {
-                    selectedCity = cities[cities.indexWhere(((cities) =>
-                        cities.cityId == widget.data.attributes.cityId))];
-                  }
                   return CustomDropdown<City>(
-                    value: selectedCity,
+                    value: cities.first,
                     items: cities,
                     label: 'Kota/Kabupaten',
                     onChanged: (value) {
                       setState(() {
                         selectedCity = value!;
-                        context.read<SubdistrictBloc>().add(
-                              SubdistrictEvent.getAllByCityId(
-                                selectedCity.cityId,
-                              ),
-                            );
                       });
+                      getAllByCityId(value!.cityId);
                     },
                   );
                 },
@@ -201,8 +206,8 @@ class _EditAddressPageState extends State<EditAddressPage> {
               return state.maybeWhen(
                 orElse: () {
                   return CustomDropdown(
-                    value: '-',
-                    items: const ['-'],
+                    value: '-- Pilih Kecamatan --',
+                    items: const ['-- Pilih Kecamatan --'],
                     label: 'Kecamatan',
                     onChanged: (value) {},
                   );
@@ -213,25 +218,8 @@ class _EditAddressPageState extends State<EditAddressPage> {
                   );
                 },
                 loaded: (subdistricts) {
-                  print(subdistricts);
-                  subdistricts.forEach((x) {
-                    print('${x.subdistrictName} | ${x.subdistrictId}');
-                  });
-                  print(subdistricts[5]);
-                  print(widget.data.attributes.subdistrictId);
-                  print(subdistricts.indexWhere(
-                      ((subdistricts) => subdistricts.subdistrictId == 3994)));
-                  if (selectedSubDistrict.subdistrictId == '0') {
-                    print(
-                        'ok ${subdistricts[subdistricts.indexWhere(((subdistricts) => subdistricts.subdistrictId == widget.data.attributes.subdistrictId))]}');
-
-                    selectedSubDistrict = subdistricts[subdistricts.indexWhere(
-                        ((subdistricts) =>
-                            subdistricts.subdistrictId ==
-                            widget.data.attributes.subdistrictId))];
-                  }
                   return CustomDropdown<SubDistrict>(
-                    value: selectedSubDistrict,
+                    value: subdistricts.first,
                     items: subdistricts,
                     label: 'Kecamatan',
                     onChanged: (value) {
@@ -278,27 +266,53 @@ class _EditAddressPageState extends State<EditAddressPage> {
               orElse: () {
                 return Button.filled(
                   onPressed: () async {
+                    //Validasi
+                    if (nameController.text == '') {
+                      _warning('Nama lengkap tidak boleh kosong!');
+                      return;
+                    }
+                    if (addressController.text == '') {
+                      _warning('Alamat tidak boleh kosong!');
+                      return;
+                    }
+                    if (phoneNumberController.text == '') {
+                      _warning('No handphone tidak boleh kosong!');
+                      return;
+                    }
+                    if (selectedProvince.provinceId == '0') {
+                      _warning('Provinsi belum dipilih!');
+                      return;
+                    }
+                    if (selectedCity.cityId == '0') {
+                      _warning('Kota belum dipilih!');
+                      return;
+                    }
+                    if (selectedSubDistrict.subdistrictId == '0') {
+                      _warning('Kecamatan belum dipilih!');
+                      return;
+                    }
+
                     //get userID from local storage
                     final userId = (await AuthLocalDataSource().getUser()).id;
                     context.read<AddAddressBloc>().add(
-                          AddAddressEvent.addAddress(
-                            name: nameController.text,
-                            address: addressController.text,
-                            phone: phoneNumberController.text,
-                            provinceId: selectedProvince.provinceId,
-                            cityId: selectedCity.cityId,
-                            subdistrictId: selectedSubDistrict.subdistrictId,
-                            provinceName: selectedProvince.province,
-                            cityName: selectedCity.cityName,
-                            subdistrictName:
-                                selectedSubDistrict.subdistrictName,
-                            codePos: zipCodeController.text,
-                            userId: userId!.toString(),
-                            isDefault: isDefault,
-                          ),
+                          AddAddressEvent.editAddress(
+                              name: nameController.text,
+                              address: addressController.text,
+                              phone: phoneNumberController.text,
+                              provinceId: selectedProvince.provinceId,
+                              cityId: selectedCity.cityId,
+                              subdistrictId: selectedSubDistrict.subdistrictId,
+                              provinceName: selectedProvince.province,
+                              cityName: selectedCity.cityName,
+                              subdistrictName:
+                                  selectedSubDistrict.subdistrictName,
+                              codePos: zipCodeController.text,
+                              userId: userId!.toString(),
+                              isDefault: isDefault,
+                              id: widget.data.id.toString()),
                         );
                   },
-                  label: 'Tambah Alamat',
+                  label: 'Simpan Alamat',
                 );
               },
               loading: () {
@@ -316,6 +330,33 @@ class _EditAddressPageState extends State<EditAddressPage> {
           },
         ),
       ),
+    );
+  }
+
+  Future<void> _warning(String pesan) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Peringatan'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(pesan),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Tutup'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

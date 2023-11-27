@@ -13,6 +13,7 @@ import 'bloc/add_address/add_address_bloc.dart';
 import 'bloc/city/city_bloc.dart';
 import 'bloc/province/province_bloc.dart';
 import 'bloc/subdistrict/subdistrict_bloc.dart';
+import 'shipping_address_page.dart';
 
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({super.key});
@@ -146,8 +147,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
               return state.maybeWhen(
                 orElse: () {
                   return CustomDropdown(
-                    value: '-',
-                    items: const ['-'],
+                    value: '-- Pilih Kota --',
+                    items: const ['-- Pilih Kota --'],
                     label: 'Kota/Kabupaten',
                     onChanged: (value) {},
                   );
@@ -179,8 +180,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
               return state.maybeWhen(
                 orElse: () {
                   return CustomDropdown(
-                    value: '-',
-                    items: const ['-'],
+                    value: '-- Pilih Kecamatan --',
+                    items: const ['-- Pilih Kecamatan --'],
                     label: 'Kecamatan',
                     onChanged: (value) {},
                   );
@@ -231,6 +232,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
               orElse: () {},
               loaded: (response) {
                 Navigator.pop(context, response);
+                MaterialPageRoute(
+                    builder: (context) => const ShippingAddressPage());
               },
             );
           },

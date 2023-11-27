@@ -33,6 +33,21 @@ mixin _$AddAddressEvent {
             String userId,
             bool isDefault)
         addAddress,
+    required TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)
+        editAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +67,21 @@ mixin _$AddAddressEvent {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult? Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +101,21 @@ mixin _$AddAddressEvent {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,18 +123,21 @@ mixin _$AddAddressEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_EditAddress value) editAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddAddress value)? addAddress,
+    TResult? Function(_EditAddress value)? editAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_EditAddress value)? editAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,6 +214,21 @@ class _$StartedImpl implements _Started {
             String userId,
             bool isDefault)
         addAddress,
+    required TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)
+        editAddress,
   }) {
     return started();
   }
@@ -188,6 +251,21 @@ class _$StartedImpl implements _Started {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult? Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
   }) {
     return started?.call();
   }
@@ -210,6 +288,21 @@ class _$StartedImpl implements _Started {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -223,6 +316,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_EditAddress value) editAddress,
   }) {
     return started(this);
   }
@@ -232,6 +326,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddAddress value)? addAddress,
+    TResult? Function(_EditAddress value)? editAddress,
   }) {
     return started?.call(this);
   }
@@ -241,6 +336,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_EditAddress value)? editAddress,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -464,6 +560,21 @@ class _$AddAddressImpl implements _AddAddress {
             String userId,
             bool isDefault)
         addAddress,
+    required TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)
+        editAddress,
   }) {
     return addAddress(name, address, phone, provinceId, cityId, subdistrictId,
         provinceName, cityName, subdistrictName, codePos, userId, isDefault);
@@ -487,6 +598,21 @@ class _$AddAddressImpl implements _AddAddress {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult? Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
   }) {
     return addAddress?.call(
         name,
@@ -521,6 +647,21 @@ class _$AddAddressImpl implements _AddAddress {
             String userId,
             bool isDefault)?
         addAddress,
+    TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -535,6 +676,7 @@ class _$AddAddressImpl implements _AddAddress {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_EditAddress value) editAddress,
   }) {
     return addAddress(this);
   }
@@ -544,6 +686,7 @@ class _$AddAddressImpl implements _AddAddress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddAddress value)? addAddress,
+    TResult? Function(_EditAddress value)? editAddress,
   }) {
     return addAddress?.call(this);
   }
@@ -553,6 +696,7 @@ class _$AddAddressImpl implements _AddAddress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_EditAddress value)? editAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -591,6 +735,432 @@ abstract class _AddAddress implements AddAddressEvent {
   bool get isDefault;
   @JsonKey(ignore: true)
   _$$AddAddressImplCopyWith<_$AddAddressImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditAddressImplCopyWith<$Res> {
+  factory _$$EditAddressImplCopyWith(
+          _$EditAddressImpl value, $Res Function(_$EditAddressImpl) then) =
+      __$$EditAddressImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String name,
+      String address,
+      String phone,
+      String provinceId,
+      String cityId,
+      String subdistrictId,
+      String provinceName,
+      String cityName,
+      String subdistrictName,
+      String codePos,
+      String userId,
+      bool isDefault,
+      String id});
+}
+
+/// @nodoc
+class __$$EditAddressImplCopyWithImpl<$Res>
+    extends _$AddAddressEventCopyWithImpl<$Res, _$EditAddressImpl>
+    implements _$$EditAddressImplCopyWith<$Res> {
+  __$$EditAddressImplCopyWithImpl(
+      _$EditAddressImpl _value, $Res Function(_$EditAddressImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? address = null,
+    Object? phone = null,
+    Object? provinceId = null,
+    Object? cityId = null,
+    Object? subdistrictId = null,
+    Object? provinceName = null,
+    Object? cityName = null,
+    Object? subdistrictName = null,
+    Object? codePos = null,
+    Object? userId = null,
+    Object? isDefault = null,
+    Object? id = null,
+  }) {
+    return _then(_$EditAddressImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      provinceId: null == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
+      subdistrictId: null == subdistrictId
+          ? _value.subdistrictId
+          : subdistrictId // ignore: cast_nullable_to_non_nullable
+              as String,
+      provinceName: null == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityName: null == cityName
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
+              as String,
+      subdistrictName: null == subdistrictName
+          ? _value.subdistrictName
+          : subdistrictName // ignore: cast_nullable_to_non_nullable
+              as String,
+      codePos: null == codePos
+          ? _value.codePos
+          : codePos // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDefault: null == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditAddressImpl implements _EditAddress {
+  const _$EditAddressImpl(
+      {required this.name,
+      required this.address,
+      required this.phone,
+      required this.provinceId,
+      required this.cityId,
+      required this.subdistrictId,
+      required this.provinceName,
+      required this.cityName,
+      required this.subdistrictName,
+      required this.codePos,
+      required this.userId,
+      required this.isDefault,
+      required this.id});
+
+  @override
+  final String name;
+  @override
+  final String address;
+  @override
+  final String phone;
+  @override
+  final String provinceId;
+  @override
+  final String cityId;
+  @override
+  final String subdistrictId;
+  @override
+  final String provinceName;
+  @override
+  final String cityName;
+  @override
+  final String subdistrictName;
+  @override
+  final String codePos;
+  @override
+  final String userId;
+  @override
+  final bool isDefault;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'AddAddressEvent.editAddress(name: $name, address: $address, phone: $phone, provinceId: $provinceId, cityId: $cityId, subdistrictId: $subdistrictId, provinceName: $provinceName, cityName: $cityName, subdistrictName: $subdistrictName, codePos: $codePos, userId: $userId, isDefault: $isDefault, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditAddressImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId) &&
+            (identical(other.subdistrictId, subdistrictId) ||
+                other.subdistrictId == subdistrictId) &&
+            (identical(other.provinceName, provinceName) ||
+                other.provinceName == provinceName) &&
+            (identical(other.cityName, cityName) ||
+                other.cityName == cityName) &&
+            (identical(other.subdistrictName, subdistrictName) ||
+                other.subdistrictName == subdistrictName) &&
+            (identical(other.codePos, codePos) || other.codePos == codePos) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.isDefault, isDefault) ||
+                other.isDefault == isDefault) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      address,
+      phone,
+      provinceId,
+      cityId,
+      subdistrictId,
+      provinceName,
+      cityName,
+      subdistrictName,
+      codePos,
+      userId,
+      isDefault,
+      id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditAddressImplCopyWith<_$EditAddressImpl> get copyWith =>
+      __$$EditAddressImplCopyWithImpl<_$EditAddressImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault)
+        addAddress,
+    required TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)
+        editAddress,
+  }) {
+    return editAddress(
+        name,
+        address,
+        phone,
+        provinceId,
+        cityId,
+        subdistrictId,
+        provinceName,
+        cityName,
+        subdistrictName,
+        codePos,
+        userId,
+        isDefault,
+        id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault)?
+        addAddress,
+    TResult? Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
+  }) {
+    return editAddress?.call(
+        name,
+        address,
+        phone,
+        provinceId,
+        cityId,
+        subdistrictId,
+        provinceName,
+        cityName,
+        subdistrictName,
+        codePos,
+        userId,
+        isDefault,
+        id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault)?
+        addAddress,
+    TResult Function(
+            String name,
+            String address,
+            String phone,
+            String provinceId,
+            String cityId,
+            String subdistrictId,
+            String provinceName,
+            String cityName,
+            String subdistrictName,
+            String codePos,
+            String userId,
+            bool isDefault,
+            String id)?
+        editAddress,
+    required TResult orElse(),
+  }) {
+    if (editAddress != null) {
+      return editAddress(
+          name,
+          address,
+          phone,
+          provinceId,
+          cityId,
+          subdistrictId,
+          provinceName,
+          cityName,
+          subdistrictName,
+          codePos,
+          userId,
+          isDefault,
+          id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_EditAddress value) editAddress,
+  }) {
+    return editAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddAddress value)? addAddress,
+    TResult? Function(_EditAddress value)? editAddress,
+  }) {
+    return editAddress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_EditAddress value)? editAddress,
+    required TResult orElse(),
+  }) {
+    if (editAddress != null) {
+      return editAddress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditAddress implements AddAddressEvent {
+  const factory _EditAddress(
+      {required final String name,
+      required final String address,
+      required final String phone,
+      required final String provinceId,
+      required final String cityId,
+      required final String subdistrictId,
+      required final String provinceName,
+      required final String cityName,
+      required final String subdistrictName,
+      required final String codePos,
+      required final String userId,
+      required final bool isDefault,
+      required final String id}) = _$EditAddressImpl;
+
+  String get name;
+  String get address;
+  String get phone;
+  String get provinceId;
+  String get cityId;
+  String get subdistrictId;
+  String get provinceName;
+  String get cityName;
+  String get subdistrictName;
+  String get codePos;
+  String get userId;
+  bool get isDefault;
+  String get id;
+  @JsonKey(ignore: true)
+  _$$EditAddressImplCopyWith<_$EditAddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

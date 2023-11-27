@@ -4,4 +4,5 @@ part of 'get_address_bloc.dart';
 class GetAddressEvent with _$GetAddressEvent {
   const factory GetAddressEvent.started() = _Started;
   const factory GetAddressEvent.getAddress() = _GetAddress;
+  const factory GetAddressEvent.getAddressDefault() = _GetAddressDefault;
 }

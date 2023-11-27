@@ -46,7 +46,7 @@ class AddressTile extends StatelessWidget {
             ),
             const SpaceHeight(16.0),
             Text(
-              data.attributes.address,
+              data.attributes.fulladdress,
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,

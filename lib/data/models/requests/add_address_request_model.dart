@@ -25,6 +25,7 @@ class AddAddressRequestModel {
 class AddAddress {
   final String name;
   final String address;
+  final String fulladdress;
   final String phone;
   final String provId;
   final String cityId;
@@ -36,6 +37,7 @@ class AddAddress {
   AddAddress({
     required this.name,
     required this.address,
+    required this.fulladdress,
     required this.phone,
     required this.provId,
     required this.cityId,
@@ -53,6 +55,7 @@ class AddAddress {
   factory AddAddress.fromMap(Map<String, dynamic> json) => AddAddress(
         name: json["name"],
         address: json["address"],
+        fulladdress: json["full_address"],
         phone: json["phone"],
         provId: json["prov_id"],
         cityId: json["city_id"],
@@ -65,6 +68,7 @@ class AddAddress {
   Map<String, dynamic> toMap() => {
         "name": name,
         "address": address,
+        "full_address": fulladdress,
         "phone": phone,
         "prov_id": provId,
         "city_id": cityId,

@@ -1,6 +1,7 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
 import 'package:fic9_ecommerce_template_app/presentation/cart/cart_page.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/bloc/bloc/products_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/shipping_address/bloc/get_address/get_address_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,6 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    context
+        .read<GetAddressBloc>()
+        .add(const GetAddressEvent.getAddressDefault());
     searchController = TextEditingController();
     super.initState();
   }
@@ -49,36 +53,54 @@ class _HomePageState extends State<HomePage> {
           const SpaceHeight(20.0),
           Row(
             children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Alamat Pengiriman",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: ColorName.grey,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Sleman, DI Yogyakarta",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: ColorName.primary,
-                        ),
-                      ),
-                      SpaceWidth(5.0),
-                      Icon(
-                        Icons.expand_more,
-                        size: 18.0,
-                        color: ColorName.primary,
-                      ),
-                    ],
-                  ),
-                ],
+              BlocBuilder<GetAddressBloc, GetAddressState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                    loaded: (data) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Alamat Pengiriman",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: ColorName.grey,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 200,
+                                child: Text(
+                                  data.data[0].attributes.fulladdress,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorName.primary,
+                                  ),
+                                ),
+                              ),
+                              const SpaceWidth(5.0),
+                              const Icon(
+                                Icons.expand_more,
+                                size: 18.0,
+                                color: ColorName.primary,
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               ),
               const Spacer(),
               Row(

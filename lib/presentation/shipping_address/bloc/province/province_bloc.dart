@@ -10,7 +10,7 @@ part 'province_bloc.freezed.dart';
 class ProvinceBloc extends Bloc<ProvinceEvent, ProvinceState> {
   Province defaultValue = Province(
     provinceId: '0',
-    province: '-',
+    province: '-- Pilih Provinsi --',
   );
 
   ProvinceBloc() : super(const _Initial()) {

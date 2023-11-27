@@ -9,6 +9,15 @@ part 'city_state.dart';
 part 'city_bloc.freezed.dart';
 
 class CityBloc extends Bloc<CityEvent, CityState> {
+  City defaultValue = City(
+    cityId: '0',
+    provinceId: '0',
+    province: '0',
+    type: '',
+    cityName: '-- Pilih Kota --',
+    postalCode: '',
+  );
+
   CityBloc() : super(const _Initial()) {
     on<_GetAllByProvinceId>((event, emit) async {
       emit(const _Loading());
@@ -16,7 +25,10 @@ class CityBloc extends Bloc<CityEvent, CityState> {
           await RajaOngkirRemoteDatasource().getCities(event.province);
       response.fold(
         (l) => emit(_Error(l)),
-        (r) => emit(_Loaded(r.rajaongkir.results)),
+        (r) {
+          r.rajaongkir.results.insert(0, defaultValue);
+          emit(_Loaded(r.rajaongkir.results));
+        },
       );
     });
   }

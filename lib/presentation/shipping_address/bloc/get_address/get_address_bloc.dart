@@ -13,7 +13,18 @@ class GetAddressBloc extends Bloc<GetAddressEvent, GetAddressState> {
     on<_GetAddress>((event, emit) async {
       emit(const _Loading());
       final response = await OrderRemoteDatasource().getAddressByUserId();
+      print(response);
+      response.fold(
+        (l) => emit(_Error(l)),
+        (r) => emit(_Loaded(r)),
+      );
+    });
 
+    on<_GetAddressDefault>((event, emit) async {
+      emit(const _Loading());
+      final response =
+          await OrderRemoteDatasource().getAddressByUserIdDefault();
+      print(response);
       response.fold(
         (l) => emit(_Error(l)),
         (r) => emit(_Loaded(r)),

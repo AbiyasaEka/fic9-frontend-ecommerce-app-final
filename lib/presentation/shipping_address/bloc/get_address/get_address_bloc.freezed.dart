@@ -20,18 +20,21 @@ mixin _$GetAddressEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAddress,
+    required TResult Function() getAddressDefault,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAddress,
+    TResult? Function()? getAddressDefault,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAddress,
+    TResult Function()? getAddressDefault,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$GetAddressEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetAddressDefault value) getAddressDefault,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAddress value)? getAddress,
+    TResult? Function(_GetAddressDefault value)? getAddressDefault,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetAddressDefault value)? getAddressDefault,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAddress,
+    required TResult Function() getAddressDefault,
   }) {
     return started();
   }
@@ -123,6 +130,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAddress,
+    TResult? Function()? getAddressDefault,
   }) {
     return started?.call();
   }
@@ -132,6 +140,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAddress,
+    TResult Function()? getAddressDefault,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,6 +154,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetAddressDefault value) getAddressDefault,
   }) {
     return started(this);
   }
@@ -154,6 +164,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAddress value)? getAddress,
+    TResult? Function(_GetAddressDefault value)? getAddressDefault,
   }) {
     return started?.call(this);
   }
@@ -163,6 +174,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetAddressDefault value)? getAddressDefault,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -216,6 +228,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAddress,
+    required TResult Function() getAddressDefault,
   }) {
     return getAddress();
   }
@@ -225,6 +238,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAddress,
+    TResult? Function()? getAddressDefault,
   }) {
     return getAddress?.call();
   }
@@ -234,6 +248,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAddress,
+    TResult Function()? getAddressDefault,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -247,6 +262,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetAddressDefault value) getAddressDefault,
   }) {
     return getAddress(this);
   }
@@ -256,6 +272,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAddress value)? getAddress,
+    TResult? Function(_GetAddressDefault value)? getAddressDefault,
   }) {
     return getAddress?.call(this);
   }
@@ -265,6 +282,7 @@ class _$GetAddressImpl implements _GetAddress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetAddressDefault value)? getAddressDefault,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -276,6 +294,114 @@ class _$GetAddressImpl implements _GetAddress {
 
 abstract class _GetAddress implements GetAddressEvent {
   const factory _GetAddress() = _$GetAddressImpl;
+}
+
+/// @nodoc
+abstract class _$$GetAddressDefaultImplCopyWith<$Res> {
+  factory _$$GetAddressDefaultImplCopyWith(_$GetAddressDefaultImpl value,
+          $Res Function(_$GetAddressDefaultImpl) then) =
+      __$$GetAddressDefaultImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAddressDefaultImplCopyWithImpl<$Res>
+    extends _$GetAddressEventCopyWithImpl<$Res, _$GetAddressDefaultImpl>
+    implements _$$GetAddressDefaultImplCopyWith<$Res> {
+  __$$GetAddressDefaultImplCopyWithImpl(_$GetAddressDefaultImpl _value,
+      $Res Function(_$GetAddressDefaultImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAddressDefaultImpl implements _GetAddressDefault {
+  const _$GetAddressDefaultImpl();
+
+  @override
+  String toString() {
+    return 'GetAddressEvent.getAddressDefault()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAddressDefaultImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getAddress,
+    required TResult Function() getAddressDefault,
+  }) {
+    return getAddressDefault();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getAddress,
+    TResult? Function()? getAddressDefault,
+  }) {
+    return getAddressDefault?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getAddress,
+    TResult Function()? getAddressDefault,
+    required TResult orElse(),
+  }) {
+    if (getAddressDefault != null) {
+      return getAddressDefault();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetAddressDefault value) getAddressDefault,
+  }) {
+    return getAddressDefault(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetAddress value)? getAddress,
+    TResult? Function(_GetAddressDefault value)? getAddressDefault,
+  }) {
+    return getAddressDefault?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetAddressDefault value)? getAddressDefault,
+    required TResult orElse(),
+  }) {
+    if (getAddressDefault != null) {
+      return getAddressDefault(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAddressDefault implements GetAddressEvent {
+  const factory _GetAddressDefault() = _$GetAddressDefaultImpl;
 }
 
 /// @nodoc

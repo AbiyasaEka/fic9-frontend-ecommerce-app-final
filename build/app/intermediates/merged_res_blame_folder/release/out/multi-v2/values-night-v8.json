@@ -4,7 +4,7 @@
             "outputFile": "com.example.fic9_ecommerce_template_app-mergeReleaseResources-10:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\Belajar\\Flutter\\flutter_fic9_ecommerce_template-master\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\Belajar\\Flutter\\FIC9 Tugas Akhir\\fic9_eccommerce\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

@@ -9,6 +9,16 @@ part 'subdistrict_state.dart';
 part 'subdistrict_bloc.freezed.dart';
 
 class SubdistrictBloc extends Bloc<SubdistrictEvent, SubdistrictState> {
+  SubDistrict defaultValue = SubDistrict(
+    subdistrictId: '0',
+    provinceId: '0',
+    province: '',
+    cityId: '0',
+    city: '',
+    type: '',
+    subdistrictName: '-- Pilih Kecamatan --',
+  );
+
   SubdistrictBloc() : super(const _Initial()) {
     on<_GetAllByCityId>((event, emit) async {
       emit(const _Loading());
@@ -16,7 +26,10 @@ class SubdistrictBloc extends Bloc<SubdistrictEvent, SubdistrictState> {
           await RajaOngkirRemoteDatasource().getSubDistrict(event.city);
       response.fold(
         (l) => emit(_Error(l)),
-        (r) => emit(_Loaded(r.rajaongkir.results)),
+        (r) {
+          r.rajaongkir.results.insert(0, defaultValue);
+          emit(_Loaded(r.rajaongkir.results));
+        },
       );
     });
   }

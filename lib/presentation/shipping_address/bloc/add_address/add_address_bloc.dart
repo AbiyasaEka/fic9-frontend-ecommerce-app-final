@@ -17,7 +17,8 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
           await OrderRemoteDatasource().addAddress(AddAddressRequestModel(
               data: AddAddress(
         name: event.name,
-        address:
+        address: event.address,
+        fulladdress:
             '${event.address}, ${event.subdistrictName}, ${event.cityName}, ${event.provinceName}, ${event.codePos}',
         phone: event.phone,
         provId: event.provinceId,
@@ -27,6 +28,31 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
         userId: event.userId,
         isDefault: event.isDefault,
       )));
+
+      response.fold(
+        (l) => emit(_Error(l)),
+        (r) => emit(_Loaded(r)),
+      );
+    });
+
+    on<_EditAddress>((event, emit) async {
+      emit(const _Loading());
+      final response = await OrderRemoteDatasource().editAddress(
+          AddAddressRequestModel(
+              data: AddAddress(
+            name: event.name,
+            fulladdress:
+                '${event.address},  ${event.subdistrictName}, ${event.cityName}, ${event.provinceName}, ${event.codePos}',
+            address: event.address,
+            phone: event.phone,
+            provId: event.provinceId,
+            cityId: event.cityId,
+            subdistrictId: event.subdistrictId,
+            codePos: event.codePos,
+            userId: event.userId,
+            isDefault: event.isDefault,
+          )),
+          event.id);
 
       response.fold(
         (l) => emit(_Error(l)),
